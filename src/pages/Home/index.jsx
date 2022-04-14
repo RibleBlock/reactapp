@@ -9,45 +9,10 @@ export function Home() {
         <input type="text" placeholder="Digite o nome..." />
         <button type="button">Adicionar</button>
 
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+        <Card user="Victor Hugo" time="07:23:12" />
+        <Card user="Pietro Ricardo" time="09:13:52" />
+        <Card user="Pietro Ricardo" time="10:43:12" />
+        <Card user="Geroge Henrique" time="14:53:32" />
       </form>
   );
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react'; // <-- Hooks
 import './Home.style.css';
 
 import { Card } from '../../components';
@@ -21,9 +21,21 @@ export function Home() {
     setStudents(prevState => [...prevState, newStudent]);
   }
 
+  useEffect(() => {
+    // corpo do useEffect
+    console.log('useEffect foi chamado!');
+  },[students]);
+
   return (
-      <form action="POST">
-        <h1>Lista de Presença</h1>
+      <div className='container'>
+        <header>
+          <h1>Lista de Presença</h1>
+          <div>
+            <strong>Rodrigo</strong>
+            <img src="http://github.com/rodrigorgtic.png" alt="foto" />
+          </div>
+        </header>
+
         <input
           type="text"
           placeholder="Digite o nome..."
@@ -43,6 +55,6 @@ export function Home() {
             />
           ))
         }
-      </form>
+      </div>
   );
 }

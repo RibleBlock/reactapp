@@ -33,8 +33,15 @@ export function Home() {
           Adicionar
         </button>
 
+        {/* Cards */}
         {
-          students.map(v => <Card user={v.name} time={v.time} />)
+          students.map(v => (
+            <Card
+              key={v.time}
+              user={v.name}
+              time={v.time}
+            />
+          ))
         }
       </form>
   );

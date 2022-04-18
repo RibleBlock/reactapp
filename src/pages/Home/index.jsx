@@ -1,11 +1,13 @@
+import axios from 'axios';
 import React, { useState, useEffect } from 'react'; // <-- Hooks
 import './Home.style.css';
 
+// components
 import { Card } from '../../components';
 
 export function Home() {
   const [studentName, setStudentName] = useState(); // <--  [armazena, atualiza esse estado]
-  const [students, setStudents] = useState([]); // <-- vai armazenar os estudantes
+  const [students, setStudents] = useState([]); // <-- vai armazenar os estudantes (É UM ARRAY DE OBJETOS)
   const [user, setUser] = useState({ name: '', avatar: '' });
   // const [clientName, setClientName] = useState(); // <--  [armazena, atualiza esse estado]
 
@@ -23,16 +25,13 @@ export function Home() {
   }
 
   useEffect(() => {
-    fetch('https://api.github.com/users/RibleBlock')
-      .then(respose => respose.json())
-      .then(data => {
-        setUser({
-          name: data.name || data.login,
-          avatar: data.avatar_url
-        });
-      })
-      .catch();
-  },[]);  // <-- dependencias
+    axios.get('https://api.github.com/users/Xar0p')
+      .then(response => setUser({
+          name: response.data.name || response.data.login,
+          avatar: response.data.avatar_url
+      }))
+      .catch(e => console.log(e));
+  }, []);  // <-- dependencias
 
   return (
       <div className='container'>
@@ -55,11 +54,11 @@ export function Home() {
 
         {/* Cards */}
         {
-          students.map(v => (
+          students.map(student => (
             <Card
-              key={v.time}
-              user={v.name}
-              time={v.time}
+              key={student.time}
+              user={student.name}
+              time={student.time}
             />
           ))
         }

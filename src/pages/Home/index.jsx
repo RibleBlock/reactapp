@@ -6,6 +6,7 @@ import { Card } from '../../components';
 export function Home() {
   const [studentName, setStudentName] = useState(); // <--  [armazena, atualiza esse estado]
   const [students, setStudents] = useState([]); // <-- vai armazenar os estudantes
+  const [user, setUser] = useState({ name: '', avatar: '' });
   // const [clientName, setClientName] = useState(); // <--  [armazena, atualiza esse estado]
 
   function handleAddStudent() {
@@ -22,17 +23,24 @@ export function Home() {
   }
 
   useEffect(() => {
-    // corpo do useEffect
-    console.log('useEffect foi chamado!');
-  },[students]);
+    fetch('https://api.github.com/users/RibleBlock')
+      .then(respose => respose.json())
+      .then(data => {
+        setUser({
+          name: data.name || data.login,
+          avatar: data.avatar_url
+        });
+      })
+      .catch();
+  },[]);  // <-- dependencias
 
   return (
       <div className='container'>
         <header>
           <h1>Lista de Presença</h1>
           <div>
-            <strong>Rodrigo</strong>
-            <img src="http://github.com/rodrigorgtic.png" alt="foto" />
+            <strong>{user.name}</strong>
+            <img src={user.avatar} alt="foto" />
           </div>
         </header>
 
